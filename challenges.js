@@ -42,9 +42,20 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         // we need upldate UI (user interface) / show our global score
 
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-
-        // we need check if player won the game
-    if(scores[activePlayer] >= 100) {
+   
+    var input = document.querySelector('.finalScore').value;
+    var customScore;
+    
+    // input: undefined, 0, null, "" give us FALSE
+    // all else give us TRUE
+    if(input) {
+        customScore = input;
+    } else {
+        customScore = 100;
+    }
+       
+    // we need check if player won the game
+        if(scores[activePlayer] >= customScore) {
         document.querySelector('#name-' + activePlayer).textContent = 'WINNER';
             // now we need remove .dice (image of dice) after winner
         document.querySelector('.dice').style.display = 'none';

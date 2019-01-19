@@ -5,6 +5,9 @@ init();
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
     if(gamePlaying){
+         
+     
+
         // 1. we need a random number:
     var dice = Math.floor(Math.random() * 6) + 1;
     // 2. we need to display the result
@@ -34,9 +37,9 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         // we need upldate UI (user interface) / show our global score
 
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
-
+    
         // we need check if player won the game
-    if(scores[activePlayer] >= 20) {
+    if(scores[activePlayer] >= 100) {
         document.querySelector('#name-' + activePlayer).textContent = 'WINNER';
             // now we need remove .dice (image of dice) after winner
         document.querySelector('.dice').style.display = 'none';
