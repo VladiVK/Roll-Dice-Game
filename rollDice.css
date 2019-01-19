@@ -1,0 +1,164 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* background-color: darkgreen; */
+   background-image: url(images/background.png);
+    background-size: cover;
+    background-position: center;
+    height: 100vh; 
+}
+
+.game-name {
+    text-align: center;
+    margin-top: 20px;
+    color: #f7f7f7;
+    font-size: 250%;
+}
+.firstletter {
+    color: #EB4D4D;
+}
+
+.grid-container {
+    background-color:  #f7f7f7;
+    max-width: 1200px;
+    height: 75vh;
+    margin: 5vh auto 0 auto;
+    overflow: hidden;
+    
+    display: grid;
+    grid-template-columns: 2fr 2fr 2fr 1fr 1fr 2fr 2fr 2fr;
+    
+   
+}
+.player-0-board, .player-1-board {
+    display: grid;
+    justify-content: center;
+    align-content: space-around;
+    text-align: center;
+    
+}
+.player-0-board {
+    grid-column: 1/5;
+    grid-row: 1/10;
+    z-index: 1;
+    text-transform: uppercase;
+    
+}
+.player-1-board {
+    grid-column: 5/10;
+    grid-row: 1/10;
+    z-index: 1;
+    text-transform: uppercase;  
+}
+.player-name {
+    font-size: 2em;
+    font-weight: bold;
+}
+
+.active { background-color:rgb(231, 227, 227);}
+
+.active .player-name::after {
+    content: "\2022";
+    font-size: 1em;
+    padding-left: 10px;
+    color: #EB4D4D;
+     
+}
+
+
+
+.player-score {
+    font-size: 4em;
+    font-weight: lighter;
+    color: rgb(255, 59, 92);
+}
+.player-current-box {
+    background-color: rgb(221, 219, 217);
+    padding:  15px 5px 15px 5px;
+}
+.player-current-score {
+    color: red;
+    font-size: 150%;
+}
+
+.btn-new {
+    
+    grid-column:4/6;
+    grid-row: 2/3;
+    z-index: 2;
+   
+}
+
+.dice {
+    grid-column:4/6;
+    grid-row: 4/5;
+    z-index: 2;
+   
+    max-width: auto;
+    height: 110px;
+    justify-self: center;
+    border: solid rgb(139, 139, 138) 1px;
+    border-radius: 8px;
+}
+.btn-roll {
+    grid-column:4/6;
+    grid-row: 6/7;
+    z-index: 2;
+    margin-bottom: 5px; 
+}
+.material-icons {
+    color: #EB4D4D;
+}
+
+.btn-hold {
+    grid-column:4/6;
+    grid-row: 8/9;
+    z-index: 2;
+    margin-top: 5px;
+}
+
+button {
+    color: #555;
+    background: none;
+    border: none;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-size: 20px;
+   
+    transition: background-color 0.3s, color 0.3s;
+}
+button:hover { font-weight: 700; }
+button:hover i { margin-right: 20px; }
+
+button:focus {
+    outline: none;
+}
+.winner { background-color: #f7f7f7; }
+.winner .player-name { font-weight: 300; color: #EB4D4D; }
+
+@media screen and (max-width: 600px) {
+    .game-name {
+        font-size: 200%;
+    }
+    button {
+        font-size: 12px;
+    }
+    .dice {
+        max-width: auto;
+        height: 70px;
+        
+    }
+    .player-name {
+        font-size: 1em;
+    }
+    .player-score {
+        font-size: 2em;
+        font-weight: bold;
+    }
+
+}
+
