@@ -1,10 +1,11 @@
 
-var scores, roundScore, activePlayer;
+var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
 document.querySelector('.btn-roll').addEventListener('click', function () {
-    // 1. we need a random number:
+    if(gamePlaying){
+        // 1. we need a random number:
     var dice = Math.floor(Math.random() * 6) + 1;
 
     // 2. we need to display the result
@@ -21,12 +22,13 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
     } else {
         // next player
         nextPlayer();
+        }
     }
 });
 
     document.querySelector('.btn-hold').addEventListener('click', function() {
-
-        // we need add Current score to Global score (from var to the array)
+        if (gamePlaying) {
+    // we need add Current score to Global score (from var to the array)
 
     scores[activePlayer] += roundScore;
 
@@ -42,11 +44,13 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
             // we need add class '.winner'
         document.querySelector('.player-' + activePlayer +'-board').classList.add('winner');
         document.querySelector('.player-' + activePlayer +'-board').classList.remove('active');
+        gamePlaying = false;
         } else {
             // next player
         nextPlayer();
         }
-        
+        }
+     
     });
 
 
@@ -79,6 +83,7 @@ function init() {
     scores = [0, 0];
     roundScore = 0;
     activePlayer = 0;
+    gamePlaying = true;
 
 // we need to hide default style image of dice
 document.querySelector('.dice').style.display = 'none';
@@ -90,6 +95,9 @@ document.getElementById('current-0').textContent = '0';
 document.getElementById('current-1').textContent = '0';
 document.getElementById('name-0').textContent = 'Player 1';
 document.getElementById('name-1').textContent = 'Player 2';
+
+// we need refresh picture from previous values and winner`s style
+// and again put class "active" in order to start our game
 document.querySelector('.player-0-board').classList.remove('winner');
 document.querySelector('.player-1-board').classList.remove('winner');
 document.querySelector('.player-0-board').classList.remove('active');
