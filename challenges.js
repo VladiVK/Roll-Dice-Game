@@ -9,27 +9,31 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
     if(gamePlaying){
         // 1. we need a random number:
     var dice = Math.floor(Math.random() * 6) + 1;
+    var dice2 = Math.floor(Math.random() * 6) + 1;
     // 2. we need to display the result
-    var diceDOM =  document.querySelector('.dice');
-    diceDOM.style.display = 'block';
-    diceDOM.src ='images/dice-' + dice + '.png';
+    document.querySelector('.dice').style.display = 'block';
+    document.querySelector('.dice').src ='images/dice-' + dice + '.png';
+    document.querySelector('.dice2').style.display = 'block';
+    document.querySelector('.dice2').src ='images/dice-' + dice2 + '.png';
 
     // 3. we need update the round score if the result in NOT 1
-    if (dice === 6 && checkForSix === 6) {
+    
+    /* if ((dice === 6 || dice2 === 6) && checkForSix === 6) */
+    if (dice === 6 && dice2 === 6) {
         // player looses score
         scores[activePlayer] = 0;
         document.querySelector('#score-' + activePlayer).textContent = '0';
         nextPlayer();
-    } else if (dice !== 1) {
+    } else if (dice !== 1 && dice2 !== 1) {
         // add dice to the roundScore
-        roundScore += dice;
+        roundScore += (dice + dice2);
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
 
     }  else {
         // next player
         nextPlayer();
         }
-        checkForSix = dice;
+        //checkForSix = dice + dice2;
     }
 });
 
@@ -59,6 +63,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         document.querySelector('#name-' + activePlayer).textContent = 'WINNER';
             // now we need remove .dice (image of dice) after winner
         document.querySelector('.dice').style.display = 'none';
+        document.querySelector('.dice2').style.display = 'none';
             // we need add class '.winner'
         document.querySelector('.player-' + activePlayer +'-board').classList.add('winner');
         document.querySelector('.player-' + activePlayer +'-board').classList.remove('active');
@@ -93,6 +98,7 @@ function nextPlayer() {
 
     // now we need remove .dice (image of dice) after run 1 and player chanched
     document.querySelector('.dice').style.display = 'none';
+    document.querySelector('.dice2').style.display = 'none';
 }
 
 document.querySelector('.btn-new').addEventListener('click', init);
@@ -105,6 +111,7 @@ function init() {
 
 // we need to hide default style image of dice
 document.querySelector('.dice').style.display = 'none';
+document.querySelector('.dice2').style.display = 'none';
 
 // we need refresh picture from default style decoration values (43 ~ 11 etc.)
 document.getElementById('score-0').textContent = '0';
