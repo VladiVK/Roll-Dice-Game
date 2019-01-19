@@ -3,6 +3,8 @@ var scores, roundScore, activePlayer, gamePlaying;
 
 init();
 
+var checkForSix;
+
 document.querySelector('.btn-roll').addEventListener('click', function () {
     if(gamePlaying){
         // 1. we need a random number:
@@ -13,8 +15,12 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
     diceDOM.src ='images/dice-' + dice + '.png';
 
     // 3. we need update the round score if the result in NOT 1
-
-    if (dice !== 1) {
+    if (dice === 6 && checkForSix === 6) {
+        // player looses score
+        scores[activePlayer] = 0;
+        document.querySelector('#score-' + activePlayer).textContent = '0';
+        nextPlayer();
+    } else if (dice !== 1) {
         // add dice to the roundScore
         roundScore += dice;
         document.querySelector('#current-' + activePlayer).textContent = roundScore;
@@ -23,6 +29,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
         // next player
         nextPlayer();
         }
+        checkForSix = dice;
     }
 });
 
@@ -37,7 +44,7 @@ document.querySelector('.btn-roll').addEventListener('click', function () {
     document.querySelector('#score-' + activePlayer).textContent = scores[activePlayer];
 
         // we need check if player won the game
-    if(scores[activePlayer] >= 20) {
+    if(scores[activePlayer] >= 100) {
         document.querySelector('#name-' + activePlayer).textContent = 'WINNER';
             // now we need remove .dice (image of dice) after winner
         document.querySelector('.dice').style.display = 'none';
@@ -107,4 +114,3 @@ document.querySelector('.player-0-board').classList.add('active');
 
 
  
-//document.querySelector('#current-' + activePlayer).innerHTML = '<em>' + dice + '</em>';
